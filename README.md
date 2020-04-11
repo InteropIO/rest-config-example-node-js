@@ -72,9 +72,4 @@ This example reads and stores layouts from `configuration\layouts` folder. The e
 
 ## User identity
 In this example the user calling the service is not considered, the data returned is the same for any user. In a real application you might want to return a different set of applications per user, or to store layouts per user.
-To achieve this you need to have information about the user identity.
- 
-If you're using Windows Authentication use the **User.Identity** object in your controller.
-If not you can use a request header ("username") that Glue42 sets when issuing the request.
- 
-In the project you will find a helper method *Utils.GetCurrentUser()* that returns the username, trying to get it from **User.Identity** and falling back to request headers.
+To achieve this you need to have information about the user identity - there is a helper function *getUser* that returns the user name of the user doing the request.
