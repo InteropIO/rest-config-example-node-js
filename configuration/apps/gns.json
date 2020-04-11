@@ -1,0 +1,120 @@
+[
+    {
+        "name": "Tick42GNSUI",
+        "allowMultiple": false,
+        "autoStart": true,
+        "type": "window",
+        "caption": "GNS UI",
+        "title": "GNS UI",
+        "hidden": true,
+        "icon": "http://localhost:22080/tick42-gns-js-ui/resources/icon.ico",
+        "details": {
+            "left": 200,
+            "top": 200,
+            "width": 920,
+            "hidden": true,
+            "height": 715,
+            "url": "http://localhost:22080/tick42-gns-js-ui/",
+            "name": "t42-gns-ui",
+            "mode": "html",
+            "isSticky": false,
+            "allowMinimize": false,
+            "allowMaximize": false,
+            "allowClose": false,
+            "allowCollapse": false
+        },
+        "customProperties": {
+			// "toastUrl": "http://localhost:22080/gns-custom-toasts/",
+			// "width": 250,
+			// "height": 125,
+            // "count": 3
+		}
+    },
+    {
+        "title": "GNS Desktop Manager",
+        "type": "exe",
+        "name": "start.gns.dm",
+        "hidden": true,
+        "allowMultiple": false,
+        "service": true,
+        "details": {
+            "path": "%GDDIR%/../GNSDesktopManager",
+            "command": "GnsDesktopManager.exe",
+            "passGlueToken": true,
+            "glueTokenArgument": "/gw3:token ",
+            "parameters": " /env:GLUE-ENV LOCAL-GD3 /env:GLUE-REGION GLUE4OFFICE /gw3:method gateway-token"
+        },
+        "shutdownApplicationName": "stop.gns.dm",
+        "autoStart": true
+    },
+    {
+        "name": "GNSrestpublisher",
+        "allowMultiple": false,
+        "autoStart": false,
+        "type": "window",
+        "caption": "GNS Rest Provider Web UI",
+        "title": "GNS Management Console",
+        "hidden": true,
+        "details": {
+            "left": 200,
+            "top": 200,
+            "width": 900,
+            "height": 715,
+            "url": "https://gns-demo.tick42.com/",
+            "name": "t42-gns-demo",
+            "mode": "flat",
+            "isSticky": true,
+            "allowMinimize": false,
+            "allowMaximize": false,
+            "allowClose": false,
+            "allowCollapse": false
+        }
+    },
+	{
+        "name": "js-gns-action-tester",
+        "allowMultiple": false,
+        "autoStart": false,
+        "type": "window",
+        "caption": "js-gns-action-tester",
+        "title": "GNS Action tester",
+        "icon": "http://localhost:22080/tick42-gns-js-ui/resources/icon.ico",
+        "details": {
+            "left": 200,
+            "top": 200,
+            "width": 400,
+            "height": 400,
+            "url": "http://localhost:22080/js-gns-action-tester/",
+            "name": "js-gns-action-tester",
+            "mode": "tab",
+            "isSticky": false,
+            "allowMinimize": false,
+            "allowMaximize": false,
+            "allowClose": true,
+            "allowCollapse": false
+        },
+        "hidden": true
+    },
+    {
+        "name": "js-gns-dialog-panel",
+        "allowMultiple": false,
+        "autoStart": true,
+        "type": "window",
+        "hidden": true,
+        "caption": "js-gns-dialog-panel",
+        "title": "GNS Dialog Panel",
+        "icon": "http://localhost:22080/tick42-gns-js-ui/resources/icon.ico",
+        "details": {
+			"hidden": true,
+			"hasMoveAreas": false,
+			"hasSizeAreas": false,
+            "url": "http://localhost:22080/tick42-gns-js-ui/dialog-panel.html",
+            "name": "js-gns-dialog-panel",
+            "mode": "html",
+            "isSticky": false,
+            "allowMinimize": false,
+            "allowMaximize": false,
+            "allowClose": false,
+            "allowCollapse": false
+        }
+    }
+]

@@ -1,0 +1,19 @@
+[
+    {
+        "title": "Java Swing App ",
+        "type": "exe",
+        "name": "java-demo",
+        "icon": "http://localhost:22080/resources/icons/java.ico",
+        "details": {
+            "path": "%GDDIR%/../Demos/Java/tick42-glue-demo-channels",
+            "command": "java",
+            "parameters": "-Dglue.windows.sticky-agent=%GLUE-REGION%-%GLUE-ENV% -jar target/tick42-glue-demo-channels.jar",
+            "mode": "tab",
+            "top": 180,
+            "left": 380
+        },
+        "customProperties": {
+            "appManagerOrder": 7
+        }
+    }
+]

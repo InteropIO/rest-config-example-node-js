@@ -1,0 +1,63 @@
+[
+    {
+        "title": "WPF Legacy v1",
+        "type": "exe",
+        "name": "cl-wpf1",
+        "hidden": true,
+        "icon": "http://localhost:22080/resources/icons/w1.jpg",
+        "details": {
+            "path": "%GDDIR%/../Demos/ClientProfileDemo/",
+            "command": "ClientProfileDemo.exe",
+            "parameters": " --mode=1 --clients=http://localhost:22060/clients",
+            "left": 50,
+            "top": 75,
+            "width": 400,
+            "height": 400
+        }
+    },
+    {
+        "title": "WPF Legacy v2 (sticky)",
+        "type": "exe",
+        "name": "cl-wpf2",
+        "hidden": true,
+        "icon": "http://localhost:22080/resources/icons/w2.jpg",
+        "details": {
+            "path": "%GDDIR%/../Demos/ClientProfileDemo/",
+            "command": "ClientProfileDemo.exe",
+            "parameters": " --mode=2 --clients=http://localhost:22060/clients",
+            "left": 75,
+            "top": 75,
+            "width": 400,
+            "height": 400
+        }
+    },
+    {
+        "title": "Client list - WPF",
+        "type": "exe",
+        "name": "cl-wpf3",
+        "icon": "http://localhost:22080/resources/icons/wpf.ico",
+        "details": {
+            "path": "%GDDIR%/../Demos/ClientProfileDemo/",
+            "command": "ClientProfileDemo.exe",
+            "parameters": " --mode=3 --portfolio-app-name=clientportfolio --clients=http://localhost:22060/clients",
+            "left": 100,
+            "top": 75
+        },
+        "customProperties": {
+            "includeInCanvas": true,
+            "appManagerOrder": 2
+        }
+    },
+    {
+        "title": "Client List WPF v3 - CP Autostart",
+        "type": "exe",
+        "name": "cl-wpf3-cp",
+        "hidden": true,
+        "icon": "http://localhost:22080/resources/icons/w3.jpg",
+        "details": {
+            "path": "%GDDIR%/../Demos/ClientProfileDemo/",
+            "command": "ClientProfileDemo.exe",
+            "parameters": " --mode=3 --launch-portfolio --clients=http://localhost:22060/clients"
+        }
+    }
+]

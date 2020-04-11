@@ -1,0 +1,21 @@
+[
+    {
+        "title": "Getting Started",
+        "type": "window",
+        "name": "getting-started",
+        "details": {
+            "url": "http://localhost:22080/getting-started/",
+            "top": 100,
+            "left": 200,
+            "width": 600,
+            "height": 800,
+            "allowCollapse": false,
+            "startLocation": "center"
+        },
+        "allowMultiple": false,
+        "ignoreSaveOnClose": true,
+        "customProperties": {
+            "appManagerOrder": -1
+        }
+    }
+]
