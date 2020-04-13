@@ -2,7 +2,7 @@
 
 [**Glue42 Enterprise**](https://glue42.com/desktop-enterprise/) uses application and layout configurations defined on the local machine, but can also be reconfigured to fetch them from a REST service.
 
-This example project shows how to run an NodeJS REST service that provides [application](https://docs.glue42.com/glue42-concepts/application-management/overview/index.html#application_stores-rest_service_app_stores) and [layout](https://docs.glue42.com/glue42-concepts/windows/layouts/overview/index.html#layout_stores-rest_service_layout_store) stores for **Glue42 Enterprise**.
+This example project shows how to run a Node.js REST service that provides [application](https://docs.glue42.com/glue42-concepts/application-management/overview/index.html#application_stores-rest_service_app_stores) and [layout](https://docs.glue42.com/glue42-concepts/windows/layouts/overview/index.html#layout_stores-rest_service_layout_store) stores for **Glue42 Enterprise**.
 
 Note that this is a sample implementation and some parts of it must be extended to work well in a multi-user scenario.
 
@@ -11,6 +11,7 @@ Note that this is a sample implementation and some parts of it must be extended 
 This example uses application definitions in JSON format located in the `configuration\apps` folder. Layout definitions are fetched from and saved in the `configuration\layouts` folder. You can also use your own application definitions, but they must be in the standard Glue42 [application definition](https://docs.glue42.com/developers/configuration/application/index.html) format.
 
 To start:
+
 ```cmd
 npm i           // install the dependencies
 npm run start   // run the server
@@ -56,20 +57,21 @@ Find the `layouts` top-level key in the `system.json` file and edit the `store` 
 ### Port 
 
 By default, the server will listen on port `8004`. The environment variable `SERVER_PORT` can be used to override this setting, e.g. to change the port to 8005 in the start script:
-```
-scripts:{
+
+```json
+scripts: {
     "start": "env SERVER_PORT=8005 && npm run build && node ./src/index.js"
 }
 ```
 
-### Application files
+### Application Files
 
-This example uses application definitions in JSON format located in the `configuration\apps` folder. The env variable `APPS_FOLDER` can be used to override the setting.
+This example uses application definitions in JSON format located in the `configuration\apps` folder. The env variable `APPS_FOLDER` can be used to override the default setting.
 
-### Layout files
+### Layout Files
 
-This example reads and stores layouts from `configuration\layouts` folder. The env variable `LAYOUTS_FOLDER` can be used to override the setting.
+This example reads and stores layouts from the `configuration\layouts` folder. The env variable `LAYOUTS_FOLDER` can be used to override the default setting.
 
-## User identity
-In this example the user calling the service is not considered, the data returned is the same for any user. In a real application you might want to return a different set of applications per user, or to store layouts per user.
-To achieve this you need to have information about the user identity - there is a helper function *getUser* that returns the user name of the user doing the request.
+## User Identity
+
+In this example, the user calling the service is not considered, and the returned data is the same for any user. In a real application, you may want to return a different set of applications per user, or to store layouts per user. To achieve this, you need to have information about the user identity - you can use the helper function `getUser()`, which returns the username of the user making the request.
