@@ -52,6 +52,27 @@ Find the `layouts` top-level key in the `system.json` file and edit the `store` 
 
 ```
 
+### Configurations
+Add the "extends" top-level key in any configuration file.
+
+```json
+ "extends": [
+    {
+        "type": "file",
+        "source": "config/local.system.nested.json"
+    },
+    {
+        "type": "rest",
+        "source": "http://localhost:8004/"
+    },
+    { 
+        "type": "remote", 
+        "source": "https://something.com/glue42/%GLUE-REGION%-%GLUE-ENV%.system.json"
+    },         
+]
+
+```
+
 ## Service configuration
 
 ### Port 
