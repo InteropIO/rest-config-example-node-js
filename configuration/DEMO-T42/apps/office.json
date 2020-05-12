@@ -1,0 +1,49 @@
+[
+    {
+        "title": "EXCEL",
+        "type": "exe",
+        "name": "excel",
+        "hidden": true,
+        "icon": "http://localhost:22080/resources/icons/excel.ico",
+        "details": {
+            "path": "%SystemRoot%/System32",
+            "command": "cmd.exe",
+            "parameters": "/c %GDDIR%\\..\\GlueXl\\_run-excel.cmd",
+            "useShellExecute": true
+        },
+        "customProperties": {
+            "folder": "Microsoft Office"
+        }
+    },
+    {
+        "title": "Outlook",
+        "type": "exe",
+        "name": "outlook",
+        "hidden": true,
+        "icon": "http://localhost:22080/resources/icons/outlook.ico",
+        "details": {
+            "path": "%SystemRoot%/System32",
+            "command": "cmd.exe",
+            "parameters": "/c %GDDIR%\\..\\GlueOutlook\\_run-outlook.cmd",
+            "useShellExecute": true
+        },
+        "customProperties": {
+            "folder": "Microsoft Office"
+        }
+    },
+    {
+        "title": "Word",
+        "type": "exe",
+        "name": "word",
+        "hidden": true,
+        "icon": "http://localhost:22080/resources/icons/word.ico",
+        "details": {
+            "path": "%GDDIR%/../GlueWord/",
+            "command": "__StartGlueWord.docm",
+            "useShellExecute": true
+        },
+        "customProperties": {
+            "folder": "Microsoft Office"
+        }
+    }
+]

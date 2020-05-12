@@ -1,0 +1,37 @@
+[
+    {
+        "title": "Glue42 docs",
+        "type": "window",
+        "name": "tick42-docs",
+        "details": {
+            "url": "http://staging-docs.glue42.com/g4e",
+            "top": 100,
+            "left": 200,
+            "width": 800,
+            "height": 800,
+            "allowCollapse": false,
+            "startLocation": "center"
+
+        },
+        "customProperties": {
+            "appManagerOrder": 9
+        }
+    },
+    {
+        "title": "Glue42 website",
+        "type": "window",
+        "name": "glue42",
+        "details": {
+            "url": "http://glue42.com",
+            "top": 100,
+            "left": 400,
+            "width": 800,
+            "height": 800,
+            "allowCollapse": false,
+            "startLocation": "center"
+        },
+        "customProperties": {
+            "appManagerOrder": 8
+        }
+    }
+]

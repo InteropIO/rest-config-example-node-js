@@ -1,0 +1,42 @@
+{
+    "appenders": {
+        "out": {
+            "type": "stdout"
+        },
+        "app": {
+            "type": "file",
+            "filename": "%GLUE-USER-DATA%/logs/application.log",
+            "maxLogSize": 10485760,
+            "backups": 5,
+            "minLevel": "info",
+            "keepFileExt": true
+        },
+        "applications": {
+            "type": "multiFile",
+            "base": "%GLUE-USER-DATA%/logs/applications/",
+            "property": "applicationName",
+            "extension": ".log",
+            "maxLogSize": 10485760,
+            "backups": 3,
+            "category": "app-own-log",
+            "layout": {
+                "type": "pattern",
+                "pattern": "[%d] [%p] [%X{instanceId}] %X{loggerName} - %m"
+            }
+        }
+    },
+    "categories": {
+        "default": {
+            "appenders": ["out", "app"],
+            "level": "debug"
+        },
+        "glue-logger": {
+            "appenders": ["app"],
+            "level": "trace"
+        },
+        "app-own-log": {
+            "appenders": ["applications"],
+            "level": "trace"
+        }
+    }
+}

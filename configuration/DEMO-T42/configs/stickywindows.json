@@ -1,0 +1,24 @@
+{
+    "identity": "%GLUE-REGION%-%GLUE-ENV%",
+    "snapDistance": 5,
+    "targetMode": "Glue",
+    "approachingDistance": 30,
+    "edgeDistance": 4,
+    "snapToScreenEdges": true,
+    "autoSnap": true,
+    "groupCaptionAlwaysShown": true,
+    "autoArrange": true,
+    "debugWindow": "Hidden",
+    "movingGroupsFromTopWindowOnly": false,
+    "enableCrossProcess": true,
+    "minimumWindowSize": 100,
+    "sizingMode": "Proportional",
+    "groupMaximizedMode": "Fill",
+    "enableSwimlaneFrameDropShadow": true,
+    "enableWindowGroupsDropShadow": true,
+    "hideSwimlaneFrameCaption": false,
+    "tabs": {
+        "buttonsAlwaysVisible": false,
+        "flatWhenSingle": false
+    }
+}
