@@ -1,0 +1,331 @@
+{
+    "region": "DEMO",
+    "env": "T42",
+    "appStores": [
+        {
+            "type": "path",
+            "details": {
+                "path": "./config/apps"
+            }
+        },
+        {
+            "type": "path",
+            "details": {
+                "path": "%GD3-APP-STORE%"
+            }
+        },
+        {
+            "type": "path",
+            "details": {
+                "path": "%GLUE-USER-DATA%/apps"
+            }
+        }
+    ],
+    "gw": {
+        "embedded": false,
+        "configuration": {
+            "port": 8385,
+            "authentication": {
+                "available": [
+                    "basic"
+                ],
+                "default": "basic"
+            },
+            "logLevel": "info",
+            "logConfig": {
+                "appenders": {
+                    "gw": {
+                        "type": "file",
+                        "filename": "%GLUE-USER-DATA%/logs/gw.log",
+                        "maxLogSize": 10000000,
+                        "backups": 10,
+                        "minLevel": "debug"
+                    }
+                },
+                "categories": {
+                    "default": {
+                        "appenders": [
+                            "gw"
+                        ],
+                        "level": "debug"
+                    }
+                }
+            },
+            "security": {
+                "origin_filters": {
+                    "missing": "whitelist",
+                    "whitelist": [
+                        "#.*"
+                    ],
+                    "non_matched": "whitelist"
+                }
+            }
+        }
+    },
+    "systemAppStores": [
+        {
+            "type": "path",
+            "details": {
+                "path": "./config/systemApps"
+            }
+        }
+    ],
+    "issueReporting": {
+        "attachmentsViewMode": "category",
+        "jira": {
+            "enabled": true,
+            "url": "https://jira.tick42.com/rpc/soap/jirasoapservice-v2",
+            "user": "dotautoreporting",
+            "password": "password1",
+            "project": "T42_AUTO"
+        },
+        "mail": {
+            "enabled": false,
+            "zipAttachments": true,
+            "bugSubjectPrefix": "Bug:",
+            "reportSubjectPrefix": "Issue:",
+            "recipients": [],
+            "allowEditRecipients": true,
+            "maxAttachmentMB": "10"
+        },
+        "folderAttachments": [
+            {
+                "name": "G4E-Screenshots",
+                "folderPath": "%GLUE-USER-DATA%/logs",
+                "zipFolderPath": "GlueDesktop\\Screenshots",
+                "filter": "*.png",
+                "category": "Screenshots",
+                "selected": false
+            },
+            {
+                "name": "G4E-AppLogs",
+                "folderPath": "%GLUE-USER-DATA%/logs",
+                "zipFolderPath": "GlueDesktop\\Logs",
+                "filter": "*.log",
+                "category": "Logs",
+                "selected": true
+            },
+            {
+                "name": "G4E-Configs",
+                "folderPath": "%GDDIR%/config",
+                "zipFolderPath": "GlueDesktop\\Configs",
+                "filter": "*.json",
+                "category": "Configs",
+                "selected": true
+            },
+            {
+                "name": "G4E-Crashes",
+                "folderPath": "%GLUE-USER-DATA%/Glue42 Crashes",
+                "zipFolderPath": "GlueDesktop\\Crashes",
+                "filter": "*.dmp",
+                "category": "Dumps"
+            }
+        ]
+    },
+    "crashReporter": {
+        "enabled": false,
+        "folderPath": "%GLUE-USER-DATA%/crashes",
+        "companyName": "Tick42",
+        "productName": "Glue42",
+        "output": {
+            "type": "local"
+        }
+    },
+    "licREST": "https://dev-lic-server.tick42.com/",
+    "enableGTF": true,
+    "nodePath": "./assets/node/node.exe",
+    "hotkeys": {
+        "enabled": true,
+        "reservedHotkeys": [
+            "ctrl",
+            "alt",
+            "shift",
+            "ctrl+c",
+            "ctrl+v",
+            "alt+f4"
+        ]
+    },
+    "swimlane": {
+        "saveApplicationContext": true,
+        "saveActivityContext": false,
+        "loadControl": {
+            "restoreStrategy": "delayed",
+            "initialOffsetInterval": 5000,
+            "showDelayedIndicator": false,
+            "interval": 5000,
+            "batch": 2
+        },
+        "frame": {
+            "lockdown": false
+        },
+        "workspace": {
+            "allowDrop": true,
+            "allowExtract": true,
+            "actionButtonTooltip": "Workspace options",
+            "addButtonTooltip": "Add workspace"
+        },
+        "hibernation": {
+            "enabled": false,
+            "interval": 10,
+            "workspacesToClose": 1,
+            "rules": [
+                {
+                    "enabled": true,
+                    "type": "InsufficientSystemMemory",
+                    "threshold": 2048
+                },
+                {
+                    "enabled": true,
+                    "type": "WorkspaceIdleTime",
+                    "threshold": 120
+                },
+                {
+                    "enabled": true,
+                    "type": "MaximumActiveWorkspaces",
+                    "threshold": 5
+                }
+            ]
+        }
+    },
+    "metrics": {
+        "system": "Glue42",
+        "summaryMetric": {
+            "enabled": true,
+            "collectInterval": 30,
+            "minimalFocusInterval": 1000,
+            "flushOnShutdown": true,
+            "debugLoggingEnabled": false
+        },
+        "glueInfoMetric": {
+            "enabled": true
+        }
+    },
+    "splash": {
+        "url": "file://%GDDIR%/assets/splash/splash.html",
+        "width": 350,
+        "height": 233
+    },
+    "extensions": [],
+    "devToolsExtensions": [],
+    "layouts": {
+        "store": {
+            "type": "file"
+        },
+        "swimlaneImportExportV1Layouts": true
+    },
+    "windows": {
+        "focus": true,
+        "enableEventLogging": true,
+        "security": {
+            "webSecurity": true,
+            "popups": false,
+            "stopLoadingOnCertificationErrors": true,
+            "navigateOnDragDrop": false,
+            "sandbox": true,
+            "contextIsolation": false,
+            "nodeIntegration": false
+        },
+        "downloadSettings": {
+            "autoSave": true,
+            "autoOpenPath": false,
+            "autoOpenDownload": false,
+            "enable": true,
+            "enableDownloadBar": true,
+            "path": "%DownloadsFolder%"
+        },
+        "closeHandlers": {
+            "enabled": true,
+            "timeout": 2000
+        },
+        "refreshHandlers": {
+            "enabled": true,
+            "timeout": 2000
+        },
+        "injectSIDtoContext": false,
+        "zoom": {
+            "enabled": true,
+            "mouseWheelZoom": false,
+            "factors": [
+                24,
+                33,
+                50,
+                67,
+                75,
+                80,
+                90,
+                100,
+                110,
+                125,
+                150,
+                175,
+                200,
+                250,
+                300,
+                400,
+                500
+            ],
+            "defaultFactor": 100
+        },
+        "autoInjectAPI": {
+            "enabled": true,
+            "version": "5.*",
+            "autoInit": false
+        },
+        "autoInjectFdc3": {
+            "enabled": false,
+            "version": "*"
+        },
+        "cascade": {
+            "enabled": true,
+            "offset": 50
+        }
+    },
+    "legacy": {
+        "randomApplicationInInterop": false
+    },
+    "autoStart": {
+        "priorityEnabled": true,
+        "highPriorityBatchSize": 3,
+        "highPriorityApplicationTimeout": 1000,
+        "lowPriorityBatchSize": 5,
+        "lowPriorityBatchDelay": 5000
+    },
+    "processReuse": {
+        "enabled": true,
+        "visibleApps": {
+            "maxAppsInProcess": 12,
+            "appSlotSize": 3
+        },
+        "hiddenApps": {
+            "maxAppsInProcess": 20,
+            "appSlotSize": 1
+        },
+        "groupAutoStartedByPriorityBatchNumber": true
+    },
+    "useEmbeddedShell": true,
+    "registerHtmlContainer": false,
+    "activityColors": [
+        "#4b5d60",
+        "#394e78",
+        "#31758c",
+        "#318c71",
+        "#657839"
+    ],
+    "themes": {
+        "setThemesMethodName": "Connect.ChangeTheme",
+        "getThemesMethodName": "Connect.GetThemes",
+        "sharedContextName": "Connect.Themes"
+    },
+    "applications": {
+        "icons": {
+            "rejectUnauthorized": false
+        }
+    },
+    "folders": {
+        "userData": "%LocalAppData%/Tick42/UserData/%GLUE-ENV%-%GLUE-REGION%/"
+    },
+    "proxy": {
+        "useSystemSettings": true
+    },
+    "flash": false
+}

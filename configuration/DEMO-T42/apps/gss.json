@@ -1,0 +1,28 @@
+[{
+	"title": "Gss provider",
+	"type": "window",
+	"name": "gss-provider",
+	"hidden": true,
+	"service": true,
+	"details": {
+	  "url": "http://localhost:22080/gss-provider/",
+		"hidden": true
+	},
+	"autoStart": true
+  }, {
+	"title": "GSS JS Desktop Manager",
+	"type": "window",
+	"name": "gss-js-dm",
+	"hidden": true,
+	"service": true,
+	"details": {
+		"url": "http://localhost:22080/gss-js-dm/",
+		"hidden": true
+	},
+	"allowMultiple": false,
+	"autoStart": true,
+	"customProperties": {
+		// "log-level": "debug",
+		"auto-discover": "true"
+	}
+}]

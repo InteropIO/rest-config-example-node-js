@@ -4,16 +4,17 @@ import fs from "fs";
 import path from "path";
 import json5 from "json5";
 import asyncHandler from "express-async-handler";
-import { getUser } from "./utils";
+import { getUser, getRegionEnvFolder } from "./utils";
 
 const readDir = util.promisify(fs.readdir);
 const readFile = util.promisify(fs.readFile);
 
-export default function (app: Express, appsFolder: string) {
+export default function(app: Express, appsFolder: string) {
     app.get("/apps", asyncHandler(async (req, res, next) => {
         const user = getUser(req);
         try {
-            const applications = await fetchConfigurations(user, appsFolder);
+            const folder = getRegionEnvFolder(req, appsFolder)
+            const applications = await fetchConfigurations(user, folder);
             res.setHeader("Content-Type", "application/json");
             res.end(JSON.stringify({ applications: applications }));
         } catch (err) {

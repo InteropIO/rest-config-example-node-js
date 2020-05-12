@@ -1,0 +1,19 @@
+[{
+    "title": "Portfolio Preview",
+    "type": "window",
+    "name": "portfolio-preview",
+    "hidden": true,
+    "details": {
+      "url": "http://localhost:22080/client-list-portfolio-contact/dist/#/portfoliopreview",
+      "top": 100,
+      "left": 400,
+      "height": 400,
+      "width": 560,
+      "title": "Portfolio Preview"
+    },
+    "customProperties": {
+      "includeInClientWorkspace": true,
+      "appManagerOrder": 4
+    }
+  }
+]
