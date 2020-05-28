@@ -1,14 +1,14 @@
 # Glue42 Configuration Service Example
 
-[**Glue42 Enterprise**](https://glue42.com/desktop-enterprise/) uses application and layout configurations defined on the local machine, but can also be reconfigured to fetch them from a REST service.
+[**Glue42 Enterprise**](https://glue42.com/desktop-enterprise/) uses application, layout, system and other configurations defined on the local machine, but can also be reconfigured to fetch them from a REST service.
 
-This example project shows how to run a Node.js REST service that provides [application](https://docs.glue42.com/glue42-concepts/application-management/overview/index.html#application_stores-rest_service_app_stores) and [layout](https://docs.glue42.com/glue42-concepts/windows/layouts/overview/index.html#layout_stores-rest_service_layout_store) stores for **Glue42 Enterprise**.
+This example project shows how to run a Node.js REST service that provides configuration stores for **Glue42 Enterprise**.
 
 Note that this is a sample implementation and some parts of it must be extended to work well in a multi-user scenario.
 
 ## Configuration and Start
 
-This example uses application definitions in JSON format located in the `configuration\apps` folder. Layout definitions are fetched from and saved in the `configuration\layouts` folder. You can also use your own application definitions, but they must be in the standard Glue42 [application definition](https://docs.glue42.com/developers/configuration/application/index.html) format.
+This example uses application definitions in JSON format located in the `configuration\DEMO-T42\apps` folder. Layout definitions are fetched from and saved in the `configuration\DEMO-T42\layouts` folder. You can also use your own application definitions, but they must be in the standard Glue42 [application definition](https://docs.glue42.com/developers/configuration/application/index.html) format. System and other configuration files are located in the `configuration\DEMO-T42\configs` folder.
 
 To start:
 
@@ -21,11 +21,11 @@ This will start the service on port 8004.
 
 ## Glue42 Enterprise Configuration
 
-To enable fetching application and layout definitions from the REST service, you need to edit the `appStores` and `layouts` top-level keys in the **Glue42 Enterprise** `system.json` file, usually located in the `%LOCALAPPDATA%\Tick42\GlueDesktop\config` folder.
+To enable fetching configuration definitions from the REST service, you need to edit your local configuration files located in the `%LOCALAPPDATA%\Tick42\GlueDesktop\config` folder.
 
 ### Applications
 
-Find the `appStores` top-level key in the `system.json` file and add a new entry (or replace existing entries) with the following configuration:
+To enable fetching application configurations from the REST store, find the `appStores` top-level key in the `system.json` file and add a new entry (or replace existing entries) with the following configuration:
 
 ```json
 "appStores": [
@@ -40,7 +40,7 @@ Find the `appStores` top-level key in the `system.json` file and add a new entry
 
 ### Layouts
 
-Find the `layouts` top-level key in the `system.json` file and edit the `store` property - change the `type` to `"rest"` and assign the URL of the service to the `restURL`:
+To enable fetching layouts from the REST store, find the `layouts` top-level key in the `system.json` file and edit the `store` property - change the `type` to `"rest"` and assign the URL of the service to the `restURL`:
 
 ```json
  "layouts": {
@@ -52,28 +52,21 @@ Find the `layouts` top-level key in the `system.json` file and edit the `store` 
 
 ```
 
-### Configurations
-Add the "extends" top-level key in any configuration file.
+### System and Other Configurations
+
+To enable fetching system or other configurations from the REST store, add an `extends` top-level key in the configuration file you want to extend - change the `type` to `"rest"` and assign the URL of the service to the `source`:
 
 ```json
  "extends": [
     {
-        "type": "file",
-        "source": "config/local.system.nested.json"
-    },
-    {
         "type": "rest",
         "source": "http://localhost:8004/"
-    },
-    { 
-        "type": "remote", 
-        "source": "https://something.com/glue42/%GLUE-REGION%-%GLUE-ENV%.system.json"
-    },         
+    }        
 ]
 
 ```
 
-## Service configuration
+## REST Service Configuration
 
 ### Port 
 
@@ -87,11 +80,11 @@ scripts: {
 
 ### Application Files
 
-This example uses application definitions in JSON format located in the `configuration\apps` folder. The env variable `APPS_FOLDER` can be used to override the default setting.
+This example uses application definitions in JSON format located in the `configuration\apps` folder. The environment variable `APPS_FOLDER` can be used to override the default setting.
 
 ### Layout Files
 
-This example reads and stores layouts from the `configuration\layouts` folder. The env variable `LAYOUTS_FOLDER` can be used to override the default setting.
+This example reads and stores layouts from the `configuration\layouts` folder. The environment variable `LAYOUTS_FOLDER` can be used to override the default setting.
 
 ## User Identity
 
