@@ -25,7 +25,7 @@ export default function(app: Express, rootFolder: string) {
 
 
     async function fetchConfigurations(user: string, filePath: string) {
-        console.log(`fetching ${filePath} configuration for ${user}...`);
+        console.log(`${new Date().toLocaleTimeString()} fetching ${filePath} configuration for ${user}...`);
         return await readFile(path.join(filePath), 'utf8').then(json5.parse);
     }
 }

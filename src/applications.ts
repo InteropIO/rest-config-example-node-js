@@ -24,7 +24,7 @@ export default function(app: Express, appsFolder: string) {
 }
 
 const fetchConfigurations = async (user: string | undefined, appsFolder: string): Promise<FDC3AppDefinition[]> => {
-    console.log(`fetching configurations for ${user}`);
+    console.log(`${new Date().toLocaleTimeString()} - fetching applications for ${user}`);
 
     const files = await readDir(appsFolder);
     const fileContentsP = files.map(async fn => {

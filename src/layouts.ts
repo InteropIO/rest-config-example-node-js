@@ -63,7 +63,7 @@ export default function (app: Express, layoutsFolder: string) {
     }));
 
     async function fetchLayoutsConfigurations(user: string): Promise<any[]> {
-        console.log(`fetching layouts for ${user}`);
+        console.log(`${new Date().toLocaleTimeString()} fetching layouts for ${user}`);
         const files = await readDir(layoutsFolder);
         const filesContentsP =
             files
