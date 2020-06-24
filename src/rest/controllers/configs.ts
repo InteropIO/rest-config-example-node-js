@@ -1,14 +1,15 @@
-import { Express } from "express";
+import { Express, Router } from "express";
 import util from "util";
 import fs from "fs";
 import path from "path";
 import json5 from "json5";
-import { getUser, getRegionEnvFolder } from "./utils";
+import { getUser, getRegionEnvFolder } from "../../utils";
 
 const readFile = util.promisify(fs.readFile);
 
-export default function(app: Express, rootFolder: string) {
-    app.get('/configs', (req, res, next) => {
+export default (rootFolder: string): Router => {
+    const router: Router = Router();
+    router.get('/configs', (req, res, next) => {
         const user = getUser(req);
         const config = req.header("config");
         const filePath = path.join(getRegionEnvFolder(req, rootFolder), `${config}.json`);
@@ -23,10 +24,11 @@ export default function(app: Express, rootFolder: string) {
             })
     });
 
-
     async function fetchConfigurations(user: string, filePath: string) {
         console.log(`${new Date().toLocaleTimeString()} fetching ${filePath} configuration for ${user}...`);
         return await readFile(path.join(filePath), 'utf8').then(json5.parse);
     }
+
+    return router;
 }
 

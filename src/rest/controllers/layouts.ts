@@ -1,24 +1,25 @@
-import { Express } from "express";
+import { Express, Router } from "express";
 import fs from "fs";
 import path from "path";
 import util from "util";
 import asyncHandler from "express-async-handler";
-import { getUser } from "./utils";
+import { getUser } from "../../utils";
 
 const readDir = util.promisify(fs.readdir);
 const readFile = util.promisify(fs.readFile);
 
-export default function (app: Express, layoutsFolder: string) {
+export default (layoutsFolder: string): Router => {
+    const router: Router = Router();
     const defaultFilePath = path.join(layoutsFolder, "default.layout");
 
-    app.get("/layouts", asyncHandler(async (req, res, next) => {
+    router.get("/layouts", asyncHandler(async (req, res, next) => {
         const user = getUser(req);
         const layouts = await fetchLayoutsConfigurations(user);
         res.setHeader("Content-Type", "application/json");
         res.end(JSON.stringify({ layouts }));
     }));
 
-    app.post("/layouts", asyncHandler(async (req, res, next) => {
+    router.post("/layouts", asyncHandler(async (req, res, next) => {
         const user = getUser(req);
         const layout = req.body.layout;
         console.log(`saving layout ${layout.name} (${layout.type}) for user ${user}`);
@@ -30,7 +31,7 @@ export default function (app: Express, layoutsFolder: string) {
         res.send();
     }));
 
-    app.delete("/layouts", asyncHandler(async (req, res, next) => {
+    router.delete("/layouts", asyncHandler(async (req, res, next) => {
         const user = getUser(req);
         const name = req.body.name;
         const type = req.body.type;
@@ -41,7 +42,7 @@ export default function (app: Express, layoutsFolder: string) {
         res.send();
     }));
 
-    app.get("/default", asyncHandler(async (req, res, next) => {
+    router.get("/default", asyncHandler(async (req, res, next) => {
         const user = getUser(req);
         let result: { name?: string } = {};
         if (fs.existsSync(defaultFilePath)) {
@@ -52,7 +53,7 @@ export default function (app: Express, layoutsFolder: string) {
         res.end(JSON.stringify(result));
     }));
 
-    app.post("/default", asyncHandler(async (req, res, next) => {
+    router.post("/default", asyncHandler(async (req, res, next) => {
         const user = getUser(req);
         const layout = req.body.name;
         console.log(`saving default layout ${layout.name} for user ${user}`);
@@ -73,4 +74,6 @@ export default function (app: Express, layoutsFolder: string) {
                 });
         return await Promise.all(filesContentsP);
     }
+
+    return router;
 };
