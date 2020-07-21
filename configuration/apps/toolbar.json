@@ -1,0 +1,133 @@
+[
+  {
+    "shell": true,
+    "autoStart": true,
+    "title": "Glue42 Launchpad",
+    "type": "window",
+    "name": "toolbar-launchpad",
+    "ignoreSaveOnClose": true,
+    "details": {
+      "zoom": {
+        "enabled": false
+      },
+      "startLocation": {
+        "location": "topFull",
+        "stuck": true
+      },
+      "url": "http://localhost:22080/toolbar-bleeding/#/launch-bar",
+      "height": 40,
+      "left": 0,
+      "top": 0,
+      "mode": "html",
+      "title": "Glue42 Launchpad",
+      "focus": true,
+      "isSticky": false,
+      "hasSizeAreas": false,
+      "hasMoveAreas": false,
+      "allowMinimize": false,
+      "allowCollapse": false,
+      "allowMaximize": false,
+      "allowClose": false,
+      "maximizable": false,
+      "minimizable": true,
+      "onTop": false,
+      "historyNavigationEnabled": false
+    },
+    "customProperties": {
+      "includeInCanvas": false,
+      "isLaunchBar": true,
+      "config": {
+        "floatingAppName": "toolbar-float",
+        "alertApp": {
+          "name": "js-gns-dialog-panel",
+          "showMethod": "T42.Notifications.Show",
+          "hideMethod": "T42.Notifications.Hide",
+          "toggleMethod": "T42.Notifications.Show"
+        },
+        "minInlineRenameWidth": 400,
+        "disableAlertsAndNotifications": true,
+        "dimensions": {
+          "appMenu": {
+            "route": "/app-bar",
+            "height": 1,
+            "width": 340
+          },
+          "workspacesMenu": {
+            "route": "/wks-bar",
+            "height": 1,
+            "width": 340
+          },
+          "firstWorkspace": {
+            "route": "/wks-apps-bar",
+            "height": 1,
+            "width": 340
+          },
+          "deleteWorkspace": {
+            "route": "/wks-delete",
+            "height": 186,
+            "width": 400
+          },
+          "renameWorkspace": {
+            "route": "/wks-rename",
+            "height": 186,
+            "width": 400
+          },
+          "saveWorkspace": {
+            "route": "/wks-save",
+            "height": 166,
+            "width": 400
+          },
+          "settings": {
+            "route": "/settings",
+            "height": 115,
+            "width": 250
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "Glue42 Toolbar Floating Window",
+    "type": "window",
+    "hidden": true,
+    "name": "toolbar-float",
+    "icon": "http://localhost:22080/toolbar-bleeding/resources/icons/clients.ico",
+    "ignoreSaveOnClose": true,
+    "service": true,
+    "details": {
+      "zoom": {
+        "enabled": false
+      },
+      "url": "http://localhost:22080/toolbar-bleeding/#/",
+      "hidden": true,
+      "height": 310,
+      "width": 400,
+      "left": 252,
+      "top": 40,
+      "mode": "html",
+      "title": "Glue42 Toolbar Floating Window",
+      "focus": false,
+      "isSticky": false,
+      "hasSizeAreas": false,
+      "hasMoveAreas": false,
+      "allowClose": false,
+      "allowMinimize": false,
+      "allowCollapse": false,
+      "allowMaximize": false,
+      "showInTaskbar": false,
+      "onTop": false,
+      "historyNavigationEnabled": false
+    },
+    "customProperties": {
+      "includeInCanvas": false,
+      "config": {
+        "appCategories": [
+          "Instruments",
+          "Clients",
+          "Trading",
+          "DEV"
+        ]
+      }
+    }
+  }
+]

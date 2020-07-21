@@ -9,7 +9,7 @@ const readFile = util.promisify(fs.readFile);
 
 export default (rootFolder: string): Router => {
     const router: Router = Router();
-    router.get('/configs', (req, res, next) => {
+    router.get('/', (req, res, next) => {
         const user = getUser(req);
         const config = req.header("config");
         const filePath = path.join(getRegionEnvFolder(req, rootFolder), `${config}.json`);

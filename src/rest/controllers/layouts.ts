@@ -7,19 +7,20 @@ import { getUser } from "../../utils";
 
 const readDir = util.promisify(fs.readdir);
 const readFile = util.promisify(fs.readFile);
+const unlinkFile = util.promisify(fs.unlink);
 
 export default (layoutsFolder: string): Router => {
     const router: Router = Router();
     const defaultFilePath = path.join(layoutsFolder, "default.layout");
 
-    router.get("/layouts", asyncHandler(async (req, res, next) => {
+    router.get("/", asyncHandler(async (req, res, next) => {
         const user = getUser(req);
         const layouts = await fetchLayoutsConfigurations(user);
         res.setHeader("Content-Type", "application/json");
         res.end(JSON.stringify({ layouts }));
     }));
 
-    router.post("/layouts", asyncHandler(async (req, res, next) => {
+    router.post("/", asyncHandler(async (req, res, next) => {
         const user = getUser(req);
         const layout = req.body.layout;
         console.log(`saving layout ${layout.name} (${layout.type}) for user ${user}`);
@@ -31,13 +32,12 @@ export default (layoutsFolder: string): Router => {
         res.send();
     }));
 
-    router.delete("/layouts", asyncHandler(async (req, res, next) => {
+    router.delete("/", asyncHandler(async (req, res, next) => {
         const user = getUser(req);
         const name = req.body.name;
         const type = req.body.type;
         console.log(`removing layout ${name} (${type}) for user ${user}`);
-        // TODO - doing nothing as layouts are not saved per user in this example
-
+        unlinkFile(path.join(layoutsFolder, name + ".json"));
         res.status(204);
         res.send();
     }));
