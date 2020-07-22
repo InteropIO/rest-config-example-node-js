@@ -46,7 +46,7 @@ To enable fetching layouts from the REST store, find the `layouts` top-level key
  "layouts": {
     "store": {
         "type": "rest",
-        "restURL": "http://localhost:8004/"
+        "restURL": "http://localhost:8004/apps/"
       }
   } 
 
@@ -60,7 +60,7 @@ To enable fetching system or other configurations from the REST store, add an `e
  "extends": [
     {
         "type": "rest",
-        "source": "http://localhost:8004/"
+        "source": "http://localhost:8004/configs/"
     }        
 ]
 
