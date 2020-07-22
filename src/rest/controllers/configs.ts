@@ -1,9 +1,9 @@
-import { Express, Router } from "express";
+import { Router } from "express";
 import util from "util";
 import fs from "fs";
 import path from "path";
 import json5 from "json5";
-import { getUser, getRegionEnvFolder } from "../../utils";
+import { getUser } from "../../utils";
 
 const readFile = util.promisify(fs.readFile);
 
@@ -12,7 +12,7 @@ export default (rootFolder: string): Router => {
     router.get('/', (req, res, next) => {
         const user = getUser(req);
         const config = req.header("config");
-        const filePath = path.join(getRegionEnvFolder(req, rootFolder), `${config}.json`);
+        const filePath = path.join(rootFolder, `${config}.json`);
         fetchConfigurations(user, filePath)
             .then(configs => {
                 res.setHeader('Content-Type', 'application/json');
