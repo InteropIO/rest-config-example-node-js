@@ -5,6 +5,7 @@ import { getLogger } from 'log4js';
 import { RestConfig } from "./server";
 const cors = require('cors');
 import createAppController from "./controllers/applications";
+import createPrefsController from "./controllers/prefs";
 import createLayoutsController from "./controllers/layouts";
 import createConfigController from "./controllers/configs";
 
@@ -34,6 +35,7 @@ export default class ExpressApp {
         this.express.use("/apps", createAppController(this.config.store.applications));
         this.express.use("/layouts", createLayoutsController(this.config.layoutsFolder));
         this.express.use("/configs", createConfigController(this.config.configsFolder));    
+        this.express.use("/prefs", createPrefsController(this.config.store.prefs));   
     }
 
     private createMorgan() {

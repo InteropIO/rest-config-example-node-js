@@ -2,6 +2,7 @@ import { Application } from "../types/application";
 
 export interface Store {
     applications: ApplicationsStore;
+    prefs: PrefsStore;
     // layouts: LayoutsStore;
 }
 
@@ -14,4 +15,12 @@ export interface ApplicationsStore {
 
 export interface LayoutsStore {
     getAll(): Promise<any[]>;
+}
+
+export interface PrefsStore {
+    get(user: string, app: string): Promise<any>;
+    getAll(user: string): Promise<any[]>;
+    add(user: string, app: string, data: any): Promise<void>;
+    remove(user: string, app: string): Promise<void>;
+    clear(user: string): Promise<void>;
 }

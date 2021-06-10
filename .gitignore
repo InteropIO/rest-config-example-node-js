@@ -64,3 +64,4 @@ typings/
 /configuration/layouts/*
 /src/**/*.js
 /src/**/*.js.map
+/configuration/prefs/*

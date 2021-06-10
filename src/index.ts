@@ -21,31 +21,7 @@ const start = async () => {
     const logger = getLogger("index");
     logger.info("====== Glue42 Config Service ====================================");
 
-    trapErrors(logger);
-    // if (!readConfigs(logger)) {
-    //     return;
-    // }
-
-    // const pouch = new PouchController();
-    // const dbPath = process.env.db || "./db";
-    // let options;
-    // if (process.env.username) {
-    //     options = {
-    //         auth: {
-    //             username: process.env.username,
-    //             password: process.env.password
-    //         }
-    //     }
-    // }
-
-    // await pouch.init(dbPath, options);
-
-    // const logic = new Logic(pouch, getToken, createUser);
-
-    // const config = new Config();
-
-    // seed the database
-    // await seed(logic);
+    trapErrors(logger);   
 
     const store = new FileBasedStore();
 
@@ -55,17 +31,3 @@ const start = async () => {
 }
 
 start();
-
-
-// // start express
-// const app = express();
-// app.use(cors());
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.listen(port, () => console.log(`Listening on ${port}. Will load apps from ${appsFolder}, layouts from ${layoutsFolder} and configs from ${configsFolder}`));
-
-
-// // start configs & apps & layouts
-// configs(app, configsFolder);
-// apps(app, store.applications);
-// layouts(app, layoutsFolder);
