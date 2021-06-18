@@ -52,6 +52,21 @@ To enable fetching layouts from the REST store, find the `layouts` top-level key
 
 ```
 
+### Application Preferences
+
+To enable reading and storing application preference from he REST store, find the `applicationPreferences` top-level key in the `system.json` file and edit the `store` property - change the `type` to `"rest"` and assign the URL of the service to the `restURL`:
+
+```json
+{
+  ...
+  "applicationPreferences": {
+      "store": {
+           "type": "rest",
+           "restURL": "http://localhost:8004/"
+       }
+  }
+}
+```
 ### System and Other Configurations
 
 To enable fetching system or other configurations from the REST store, add an `extends` top-level key in the configuration file you want to extend - change the `type` to `"rest"` and assign the URL of the service to the `source`:
