@@ -62,7 +62,7 @@ To enable reading and storing application preference from he REST store, find th
   "applicationPreferences": {
       "store": {
            "type": "rest",
-           "restURL": "http://localhost:8004/"
+           "restURL": "http://localhost:8004/prefs"
        }
   }
 }
