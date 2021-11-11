@@ -13,9 +13,12 @@ export default (store: ApplicationsStore): Router => {
         const all = await store.getAll();
         const filtered = filterApps(all, user);
         const definitions = filtered.map(a => a.def);
-        const fdc3 = definitions.map(toFDC3);
+        let applications = definitions;
+        if (process.env.USE_FDC3) {
+            applications = definitions.map(toFDC3);
+        }
         res.setHeader("Content-Type", "application/json");
-        res.end(JSON.stringify({ applications: fdc3 }));
+        res.end(JSON.stringify({ applications }));
     }));
 
     router.post("/", asyncHandler(async (req, res, next) => {

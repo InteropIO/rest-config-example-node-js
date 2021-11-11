@@ -38,6 +38,8 @@ To enable fetching application configurations from the REST store, find the `app
 ]
 ``` 
 
+If you want to return apps in FDC3 format you need to set the **USE_FDC3** env variable.
+
 ### Layouts
 
 To enable fetching layouts from the REST store, find the `layouts` top-level key in the `system.json` file and edit the `store` property - change the `type` to `"rest"` and assign the URL of the service to the `restURL`:
