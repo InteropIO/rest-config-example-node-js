@@ -4,6 +4,7 @@ import path from "path";
 import util from "util";
 import asyncHandler from "express-async-handler";
 import { getUser } from "../../utils";
+import { getLogger } from "log4js";
 
 const readDir = util.promisify(fs.readdir);
 const readFile = util.promisify(fs.readFile);
@@ -12,6 +13,7 @@ const unlinkFile = util.promisify(fs.unlink);
 export default (layoutsFolder: string): Router => {
     const router: Router = Router();
     const defaultFilePath = path.join(layoutsFolder, "default.layout");
+    const logger = getLogger("layouts");
 
     router.get("/", asyncHandler(async (req, res, next) => {
         const user = getUser(req);
@@ -56,7 +58,7 @@ export default (layoutsFolder: string): Router => {
     router.post("/default", asyncHandler(async (req, res, next) => {
         const user = getUser(req);
         const layout = req.body.name;
-        console.log(`saving default layout ${layout.name} for user ${user}`);
+        logger.info(`saving default layout ${layout.name} for user ${user}`);
 
         fs.writeFileSync(defaultFilePath, layout, "utf8");
         res.status(201);
@@ -64,7 +66,7 @@ export default (layoutsFolder: string): Router => {
     }));
 
     async function fetchLayoutsConfigurations(user: string): Promise<any[]> {
-        console.log(`${new Date().toLocaleTimeString()} fetching layouts for ${user}`);
+        logger.info(`fetching layouts for ${user}`);
         const files = await readDir(layoutsFolder);
         const filesContentsP =
             files
