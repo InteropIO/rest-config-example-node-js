@@ -17,6 +17,15 @@ export class FileBasedPrefsStore implements PrefsStore {
         fs.promises.mkdir(folder, { recursive: true });
     }
 
+    public async getMany(user: string, apps: string[]): Promise<any[]> {
+        const results = [];
+        for (const app of apps) {
+            const result = await this.get(user, app);
+            results.push(result);
+        }
+        return results;
+    }
+
     public async get(user: string, app: string): Promise<any | undefined> {
         const file = this.fullPath(user, app);
         try {

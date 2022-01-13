@@ -19,6 +19,7 @@ export interface LayoutsStore {
 
 export interface PrefsStore {
     get(user: string, app: string): Promise<any>;
+    getMany(user: string, apps: string[]): Promise<any[]>;
     getAll(user: string): Promise<any[]>;
     add(user: string, app: string, data: any): Promise<void>;
     remove(user: string, app: string): Promise<void>;

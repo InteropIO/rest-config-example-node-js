@@ -9,7 +9,15 @@ export default (store: PrefsStore): Router => {
     router.get("/", asyncHandler(async (req, res, next) => {
         const user = getUser(req);
         const app = req.body.app;
-        const result = await store.get(user, app) ?? {};
+        const apps = req.body.apps;
+        let result: any;
+        if (apps) {
+            result = await store.getMany(user, apps);
+
+        } else {
+            result = await store.get(user, app) ?? {};
+        }
+
         res.json(result);
     }));
 
