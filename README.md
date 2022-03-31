@@ -25,73 +25,78 @@ To enable fetching configuration definitions from the REST service, you need to 
 
 ### Applications
 
-To enable fetching application configurations from the REST store, find the `appStores` top-level key in the `system.json` file and add a new entry (or replace existing entries) with the following configuration:
+To enable fetching application configurations from the REST store, find the `"appStores"` top-level key in the `system.json` file and add a new entry (or replace existing entries) with the following configuration:
 
 ```json
 "appStores": [
     {
         "type": "rest",
         "details": {
-            "url": "http://localhost:8004/apps/"           
+            "url": "http://localhost:8004/apps/"
         }
     }
 ]
-``` 
+```
 
-If you want to return apps in FDC3 format you need to set the **USE_FDC3** env variable.
+If you want to return apps in FDC3 format you need to set the `USE_FDC3` environment variable.
 
 ### Layouts
 
-To enable fetching layouts from the REST store, find the `layouts` top-level key in the `system.json` file and edit the `store` property - change the `type` to `"rest"` and assign the URL of the service to the `restURL`:
+To enable fetching layouts from the REST store, find the `"layouts"` top-level key in the `system.json` file and edit the `"store"` property - change the `"type"` to `"rest"` and assign the URL of the service to the `"restURL"`:
 
 ```json
- "layouts": {
-    "store": {
-        "type": "rest",
-        "restURL": "http://localhost:8004/"
-      }
-  } 
-
+{
+    "layouts": {
+        "store": {
+            "type": "rest",
+            "restURL": "http://localhost:8004/"
+        }
+    }
+}
 ```
 
 ### Application Preferences
 
-To enable reading and storing application preference from he REST store, find the `applicationPreferences` top-level key in the `system.json` file and edit the `store` property - change the `type` to `"rest"` and assign the URL of the service to the `restURL`:
+To enable reading and storing application preference from he REST store, find the `"applicationPreferences"` top-level key in the `system.json` file and edit the `"store"` property - change the `"type"` to `"rest"` and assign the URL of the service to the `"restURL"`:
 
 ```json
 {
-  ...
-  "applicationPreferences": {
-      "store": {
-           "type": "rest",
-           "restURL": "http://localhost:8004/prefs"
-       }
-  }
+    "applicationPreferences": {
+        "store": {
+            "type": "rest",
+            "restURL": "http://localhost:8004/prefs"
+        }
+    }
 }
 ```
 ### System and Other Configurations
 
-To enable fetching system or other configurations from the REST store, add an `extends` top-level key in the configuration file you want to extend - change the `type` to `"rest"` and assign the URL of the service to the `source`:
+To enable fetching system or other configurations from the REST store, add a `"sources"` top-level key in the configuration file you want to extend - change the `"type"` to `"rest"` and assign the URL of the service to the `"source"` property:
 
 ```json
- "extends": [
-    {
-        "type": "rest",
-        "source": "http://localhost:8004/configs/"
-    }        
-]
-
+{
+    "sources": [
+       {
+           "type": "rest",
+           "source": "http://localhost:8004/configs",
+           "configs": "system",
+           "priority": 1
+       }
+   ]
+}
 ```
 
 ## REST Service Configuration
 
-### Port 
+### Port
 
-By default, the server will listen on port `8004`. The environment variable `SERVER_PORT` can be used to override this setting, e.g. to change the port to 8005 in the start script:
+By default, the server will listen on port 8004. The environment variable `SERVER_PORT` can be used to override this setting, e.g. to change the port to 8005 in the start script:
 
 ```json
-scripts: {
-    "start": "env SERVER_PORT=8005 && npm run build && node ./src/index.js"
+{
+    "scripts": {
+        "start": "env SERVER_PORT=8005 && npm run build && node ./src/index.js"
+    }
 }
 ```
 
