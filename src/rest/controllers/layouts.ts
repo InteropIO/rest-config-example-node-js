@@ -57,10 +57,14 @@ export default (layoutsFolder: string): Router => {
 
     router.post("/default", asyncHandler(async (req, res, next) => {
         const user = getUser(req);
-        const layout = req.body.name;
-        logger.info(`saving default layout ${layout.name} for user ${user}`);
+        if (req.body && req.body.name) {
+            const layout = req.body.name;
+            logger.info(`saving default layout ${layout.name} for user ${user}`);
+            fs.writeFileSync(defaultFilePath, layout, "utf8");
+        } else if (typeof req.body.name === "undefined" && typeof req.body.type === "undefined") {
+            fs.unlinkSync(defaultFilePath);
+        }
 
-        fs.writeFileSync(defaultFilePath, layout, "utf8");
         res.status(201);
         res.send();
     }));
