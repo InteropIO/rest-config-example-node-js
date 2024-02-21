@@ -49,7 +49,7 @@ To enable fetching layouts from the REST store, find the `"layouts"` top-level k
     "layouts": {
         "store": {
             "type": "rest",
-            "restURL": "http://localhost:8004/"
+            "restURL": "http://localhost:8004/layouts"
         }
     }
 }
