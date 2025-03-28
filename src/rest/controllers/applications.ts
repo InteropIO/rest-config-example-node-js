@@ -18,7 +18,14 @@ export default (store: ApplicationsStore): Router => {
             applications = definitions.map(toFDC3);
         }
         res.setHeader("Content-Type", "application/json");
-        res.end(JSON.stringify({ applications }));
+
+        const response: any = { applications };
+
+        if (process.env.USE_FDC3) {
+            response.message = 'OK';
+        }
+
+        res.end(JSON.stringify(response));
     }));
 
     router.post("/", asyncHandler(async (req, res, next) => {
@@ -44,14 +51,20 @@ export default (store: ApplicationsStore): Router => {
     return router;
 }
 
-const toFDC3 = (config: any): FDC3AppDefinition => {
-    return {
+const toFDC3 = (config: any, index: number): FDC3AppDefinition => {
+    const result: any = {
         name: config.name,
         version: "1",
         title: config.title,
         manifestType: "Glue42",
         manifest: JSON.stringify(config)
+    };
+
+    if (index % 2) {
+        result.appId = config.name;
     }
+
+    return result;
 }
 
 const filterApps = (apps: Application[], user: string): Application[] => {
@@ -60,6 +73,7 @@ const filterApps = (apps: Application[], user: string): Application[] => {
 
 
 interface FDC3AppDefinition {
+    appId?: string;
     name: string;
     version: "1";
     title: string;
