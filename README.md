@@ -1,14 +1,14 @@
-# Glue42 Configuration Service Example
+# io.Connect Desktop Configuration Service Example
 
-[**Glue42 Enterprise**](https://glue42.com/desktop-enterprise/) uses application, layout, system and other configurations defined on the local machine, but can also be reconfigured to fetch them from a REST service.
+[**io.Connect Desktop**](https://docs.interop.io/desktop/getting-started/what-is-io-connect-desktop/general-overview/index.html) uses application, layout, system and other configurations defined on the local machine, but can also be reconfigured to fetch them from a REST service.
 
-This example project shows how to run a Node.js REST service that provides configuration stores for **Glue42 Enterprise**.
+This example project shows how to run a Node.js REST service that provides configuration stores for **io.Connect Desktop**.
 
 Note that this is a sample implementation and some parts of it must be extended to work well in a multi-user scenario.
 
 ## Configuration and Start
 
-This example uses application definitions in JSON format located in the `configuration\DEMO-T42\apps` folder. Layout definitions are fetched from and saved in the `configuration\DEMO-T42\layouts` folder. You can also use your own application definitions, but they must be in the standard Glue42 [application definition](https://docs.glue42.com/developers/configuration/application/index.html) format. System and other configuration files are located in the `configuration\DEMO-T42\configs` folder.
+This example uses application definitions in JSON format located in the `configuration\DEMO-T42\apps` folder. Layout definitions are fetched from and saved in the `configuration\DEMO-T42\layouts` folder. You can also use your own application definitions, but they must be in the standard io.Connect Desktop [application definition](https://docs.interop.io/desktop/developers/configuration/application/index.html) format. System and other configuration files are located in the `configuration\DEMO-T42\configs` folder.
 
 To start:
 
@@ -19,9 +19,9 @@ npm run start   // run the server
 
 This will start the service on port 8004.
 
-## Glue42 Enterprise Configuration
+## io.Connect Desktop Configuration
 
-To enable fetching configuration definitions from the REST service, you need to edit your local configuration files located in the `%LOCALAPPDATA%\Tick42\GlueDesktop\config` folder.
+To enable fetching configuration definitions from the REST service, you need to edit your local configuration files located in the `%LOCALAPPDATA%\interop.io\io.Connect Desktop\Desktop\config` folder.
 
 ### Applications
 
