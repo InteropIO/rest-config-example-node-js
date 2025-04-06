@@ -3,7 +3,7 @@ import { promisify } from "util";
 import { readdir, readFile, writeFile, unlink, existsSync } from "fs";
 import { join } from "path";
 import * as json5 from "json5";
-import { SaveLayoutRequest } from './dto/save-layout-request.dto';
+import { SaveLayoutRequestDto } from './dto/save-layout-request.dto';
 import { LayoutDto } from './dto/layout.dto';
 import { GetLayoutsResponseDto } from './dto/get-layouts-response.dto';
 
@@ -51,7 +51,7 @@ export class FileBasedLayoutsService {
     await unlinkFilePromisified(this.getLayoutPath({ name, type }));
   }
 
-  async saveDefaultLayout(layout: SaveLayoutRequest): Promise<void> {
+  async saveDefaultLayout(layout: SaveLayoutRequestDto): Promise<void> {
     const defaultFilePath = this.getLayoutPath({ name: "layout", type: this.defaultLayoutType });
     const content = JSON.stringify(layout, undefined, 2);
     await writeFilePromisified(defaultFilePath, content, "utf8");

@@ -1,12 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString } from "class-validator";
 
-
-export class AddPrefsRequest {
-    @ApiProperty({ description: 'The app. '})
-    @IsString()
+export class AddPrefsRequestDto {
+    @ApiProperty({ description: 'The application name'})
     app: string;
 
-    @ApiProperty({ description: 'If specified will return the preferences for the set of apps only.'})
+    @ApiProperty({ description: 'The actual data to be stored', type: Object})
     data?: Record<string, any>;
 }

@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { FileBasedLayoutsService } from './layouts.service';
 import { GetLayoutsResponseDto } from './dto/get-layouts-response.dto';
 import { DeleteLayoutRequestDto } from './dto/delete-layout-request.dto';
-import { SaveLayoutRequest } from './dto/save-layout-request.dto';
+import { SaveLayoutRequestDto } from './dto/save-layout-request.dto';
 import { LayoutDto } from './dto/layout.dto';
 import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 
@@ -29,7 +29,7 @@ export class LayoutsController {
   @ApiOperation({
     summary: "Add or update a layout"
   })
-  saveLayout(@Body() layout: SaveLayoutRequest): Promise<void> {
+  saveLayout(@Body() layout: SaveLayoutRequestDto): Promise<void> {
     console.log("Saving layout", layout);
     return this.service.saveLayout(layout.layout);
   }
@@ -62,7 +62,7 @@ export class LayoutsController {
     summary: "Sets the default global layout",
     description: "A default Global Layout is an already saved arrangement of interop-enabled apps that is restored upon startup of io.Connect Desktop. For more information - https://docs.interop.io/desktop/capabilities/windows/layouts/overview/index.html#default_global_layout"
   })
-  saveDefaultLayout(@Body() layout: SaveLayoutRequest): Promise<void> {
+  saveDefaultLayout(@Body() layout: SaveLayoutRequestDto): Promise<void> {
     console.log("Saving default layout", layout);
     return this.service.saveDefaultLayout(layout);
   }

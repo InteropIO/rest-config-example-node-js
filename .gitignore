@@ -68,3 +68,4 @@ typings/
 /configuration/prefs/*
 /nest/configuration/layouts/*.json
 /nest/configuration/configs/*.json
+/nest/configuration/prefs/*.json
