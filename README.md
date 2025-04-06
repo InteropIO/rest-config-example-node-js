@@ -49,7 +49,7 @@ To enable fetching layouts from the REST store, find the `"layouts"` top-level k
     "layouts": {
         "store": {
             "type": "rest",
-            "restURL": "http://localhost:8004/layouts"
+            "restURL": "http://localhost:8004/"
         }
     }
 }
@@ -110,4 +110,4 @@ This example reads and stores layouts from the `configuration\layouts` folder. T
 
 ## User Identity
 
-In this example, the user calling the service is not considered, and the returned data is the same for any user. In a real application, you may want to return a different set of applications per user, or to store layouts per user. To achieve this, you need to have information about the user identity - you can use the helper function `getUser()`, which returns the username of the user making the request.
+In this example, the user calling the service is not considered, and the returned data is the same for any user. In a real application, you want to return a different set of applications per user, or to store layouts per user. To achieve this, you need to have information about the user identity - you can use the helper function `getUser()`, which returns the username of the user making the request.

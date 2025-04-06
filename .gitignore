@@ -66,3 +66,5 @@ typings/
 /src/**/*.js
 /src/**/*.js.map
 /configuration/prefs/*
+/nest/configuration/layouts/*.json
+/nest/configuration/configs/*.json

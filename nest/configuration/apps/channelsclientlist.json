@@ -1,0 +1,34 @@
+{
+    "title": "Client List 🔗",
+    "type": "window",
+    "name": "channelsclientlist",
+    "icon": "http://localhost:22080/resources/icons/client-list.ico",
+    "hidden": false,
+    "details": {
+        "url": "http://localhost:22080/client-list-portfolio-contact/dist/#/clientlist",
+        "height": 640,
+        "width": 560,
+        "left": 100,
+        "top": 100,
+        "mode": "tab",
+        "title": "Client List",
+        "allowChannels": true,
+        "loader": {
+            "enabled": true,
+            "hideOnLoad": true
+        }
+    },
+    "customProperties": {
+        "useChannels": true,
+        "functions": [
+            {
+                "key": "Access client Portfolio",
+                "description": "Show the portfolio for a selected client"
+            }
+        ],
+        "folder": "Clients",
+        "includeInCanvas": false,
+        "includeInWorkspaces": false,
+        "appManagerOrder": 1
+    }
+}
