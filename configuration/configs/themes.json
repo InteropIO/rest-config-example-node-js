@@ -1,0 +1,17 @@
+[
+    {
+        "name": "dark",
+        "displayName": "Night updated",
+        "properties": {
+            "frameColor": "Blue"
+        }
+    },
+    {
+        "name": "light",
+        "displayName": "Day updated",
+        "properties": {
+            "frameColor": "Green",
+            "titleHeight": 20       
+        }
+    }
+]

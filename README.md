@@ -2,7 +2,7 @@
 
 [**io.Connect Desktop**](https://docs.interop.io/desktop/getting-started/what-is-io-connect-desktop/general-overview/index.html) uses application, layout, system and other configurations defined on the local machine, but can also be reconfigured to fetch them from a REST service.
 
-This example project shows how to run a Node.js REST service that provides configuration stores for **io.Connect**.
+This example project shows how to run a Node.js REST service that provides configuration stores for **io.Connect Desktop**.
 
 ⚠️ **Note:** This is a sample implementation intended for demonstration purposes only. Several aspects would require enhancement for production use in a multi-user environment. Most notably, this sample lacks proper user management and authentication. In a production system, requests should be segregated by user identity, ensuring users can only access their own layouts and data. Currently, this example returns all layouts to any connecting user regardless of identity, which would be inappropriate for a secure multi-user application.
 
@@ -37,17 +37,18 @@ To enable fetching configuration definitions from the REST service, you need to 
 To enable fetching application configurations from the REST store, find the `"appStores"` top-level key in the `system.json` file and add a new entry (or replace existing entries) with the following configuration:
 
 ```json
-"appStores": [
-    {
-        "type": "rest",
-        "details": {
-            "url": "http://localhost:8004/apps/"
-        }
-    }
-]
-```
+{
 
-If you want to return apps in FDC3 format you need to set the `USE_FDC3` environment variable.
+    "appStores": [
+        {
+            "type": "rest",
+            "details": {
+                "url": "http://localhost:8004/apps/"
+            }
+        }
+    ]
+}
+```
 
 ### Layouts
 
@@ -80,19 +81,16 @@ To enable reading and storing application preference from he REST store, find th
 ```
 ### System and Other Configurations
 
-To enable fetching system or other configurations from the REST store, add a `"sources"` top-level key in the configuration file you want to extend - change the `"type"` to `"rest"` and assign the URL of the service to the `"source"` property:
+To enable io.Connect Desktop to fetch configurations from a remote location, use the "remoteConfig" top-level key of the `gilding.json` configuration file located in the `<installation_location>/interop.io/io.Connect Desktop/Desktop/config` folder
 
 ```json
 {
-    "sources": [
-       {
-           "type": "rest",
-           "source": "http://localhost:8004/configs",
-           "configs": "system",
-           "priority": 1
-       }
-   ]
-}
+    "remoteConfig": {
+        "enabled": true,
+        "url": "http://localhost:8004/configs",
+        "wipeFolder": true
+    }
+} 
 ```
 
 ## REST Service Configuration

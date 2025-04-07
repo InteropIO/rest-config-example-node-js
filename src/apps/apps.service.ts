@@ -18,7 +18,7 @@ const unlinkFilePromisified = promisify(unlink);
 export class FileBasedAppsService {
   private appsFolder = process.env.APPS_FOLDER || "./configuration/apps";
 
-  async getApps(): Promise<ApplicationDto[]> {  
+  async getApps(): Promise<ApplicationDto[]> {
     // get the json files
     let files = await readDirPromisfied(this.appsFolder);
     files = files.filter(f => f.endsWith(".json"));
@@ -31,7 +31,7 @@ export class FileBasedAppsService {
 
     const fileContents = await Promise.all(fileContentsP);
     // each file can have single app definition or array of definitions
-    const configs = fileContents.reduce((acc: any[], cfg) => {
+    let configs = fileContents.reduce((acc: any[], cfg) => {
       return acc.concat(cfg);
     }, []);
 

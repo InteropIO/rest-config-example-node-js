@@ -5,10 +5,12 @@ import { LayoutsController } from './layouts/layouts.controller';
 import { FileBasedLayoutsService } from './layouts/layouts.service';
 import { FileBasedPrefsService } from './prefs/prefs.service';
 import { PrefsController } from './prefs/prefs.controller';
+import { ConfigController } from './configs/config.controller';
+import { FileBasedConfigService } from './configs/config.service';
 
 @Module({
   imports: [],
-  controllers: [ AppsController, LayoutsController, PrefsController],
-  providers: [ FileBasedAppsService, FileBasedLayoutsService, FileBasedPrefsService],
+  controllers: [ AppsController, LayoutsController, PrefsController, ConfigController],
+  providers: [ FileBasedAppsService, FileBasedLayoutsService, FileBasedPrefsService, FileBasedConfigService],
 })
 export class AppModule {}
