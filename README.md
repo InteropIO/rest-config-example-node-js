@@ -100,9 +100,9 @@ To enable io.Connect Desktop to fetch system configurations from a remote locati
 
 ## REST Service Env Variables
 
-SERVER_PORT - The port on which the REST service will run. Defaults to 8004
-APPS_FOLDER - Specifies the directory containing application definitions in JSON format. By default, it points to the `configuration\apps` folder, but the environment variable `APPS_FOLDER` can be used to override this setting.
-LAYOUTS_FOLDER - Specifies the directory for reading and storing layout definitions. By default, this is set to the `configuration\layouts` folder, but the environment variable `LAYOUTS_FOLDER` can be used to override this setting.
-PREFS_FOLDER - Specifies the directory used for reading and storing application preferences. By default, it points to the `configuration\prefs` folder, but the environment variable `PREFS_FOLDER` can be used to override this setting.
-CONFIGS_FOLDER - Specifies the directory for storing system configurations. By default, it points to the `configuration\configs` folder, but the environment variable `CONFIGS_FOLDER` can be used to override this setting.
+* SERVER_PORT - The port on which the REST service will run. Defaults to 8004
+* APPS_FOLDER - Specifies the directory containing application definitions in JSON format. By default, it points to the `configuration\apps` folder, but the environment variable `APPS_FOLDER` can be used to override * this setting.
+* LAYOUTS_FOLDER - Specifies the directory for reading and storing layout definitions. By default, this is set to the `configuration\layouts` folder, but the environment variable `LAYOUTS_FOLDER` can be used to override this setting.
+* PREFS_FOLDER - Specifies the directory used for reading and storing application preferences. By default, it points to the `configuration\prefs` folder, but the environment variable `PREFS_FOLDER` can be used to override this setting.
+* CONFIGS_FOLDER - Specifies the directory for storing system configurations. By default, it points to the `configuration\configs` folder, but the environment variable `CONFIGS_FOLDER` can be used to override this setting.
 
