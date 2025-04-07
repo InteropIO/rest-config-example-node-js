@@ -22,20 +22,18 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
-This will start the service on port 8004 (by default). You can override the port by setting the `SERVER_PORT` environment variable, as described later in the document.
+```
 
-This will start the service on port 8004.
+This will start the service on port 8004 (by default). You can override the port by setting the `SERVER_PORT` environment variable, as described later in the document.
 
 ## REST API Documentation
 
 Once the server is running, you can:
-* view the Swagger UI by opening http://localhost:8004/api 
-* view the Swagger definition by opening http://localhost:8004/api-json or http://localhost:8004/api-yaml. 
+* view the Swagger UI by opening [http://localhost:8004/api](http://localhost:8004/api)
+* view the Swagger definition by opening [http://localhost:8004/api-json](http://localhost:8004/api-json) or [http://localhost:8004/api-yaml](http://localhost:8004/api-yaml)
 
 
 ## io.Connect Desktop Configuration
-
-This example uses application definitions in JSON format located in the `configuration\DEMO-T42\apps` folder. Layout definitions are fetched from and saved in the `configuration\DEMO-T42\layouts` folder. You can also use your own application definitions, but they must be in the standard io.Connect Desktop [application definition](https://docs.interop.io/desktop/developers/configuration/application/index.html) format. System and other configuration files are located in the `configuration\DEMO-T42\configs` folder.
 
 To enable fetching configuration definitions from the REST service, you need to edit your local configuration files located in the `%LOCALAPPDATA%\interop.io\io.Connect Desktop\Desktop\config` folder.
 
@@ -88,7 +86,7 @@ To enable reading and storing application preference from the REST store, find t
 ```
 ### System and Other Configurations
 
-To enable io.Connect Desktop to fetch configurations from a remote location, use the "remoteConfig" top-level key of the `gilding.json` configuration file located in the `<installation_location>/interop.io/io.Connect Desktop/Desktop/config` folder
+To enable io.Connect Desktop to fetch system configurations from a remote location, use the "remoteConfig" top-level key of the `gilding.json` configuration file:
 
 ```json
 {
