@@ -17,10 +17,10 @@ export class ConfigController {
     description: 'Successfully retrieved configurations.',
     type: GetConfigsResponsetDto
   })
-  async get(@Body() config: GetConfigsRequestDto): Promise<Record<string, string>> {
+  async get(@Body() config : GetConfigsRequestDto): Promise<Record<string, string>> {
      // get configs param from header OR from query OR default to "*"
      let configsParam: string = config.configs ?? "*";
-     console.log("Getting configs", configsParam);
+     console.log("Getting configs");
      return this.service.get(configsParam);
   }  
 }

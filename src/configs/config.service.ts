@@ -12,7 +12,7 @@ const mkDirPromisified = promisify(mkdir);
 export class FileBasedConfigService {
   private folder = process.env.PREFS_FOLDER || "./configuration/configs";
   // some of the confis are actually arrays (not objects)
-  private arrayConfigs = ["themes", "channels"];
+  private arrayConfigs = ["themes.json", "channels.json"];
 
   constructor() {
     mkDirPromisified(this.folder, { recursive: true });
@@ -29,12 +29,14 @@ export class FileBasedConfigService {
     const result: Record<string, any> = {};
     if (configs) {
       for (const config of configs) {
+        let contents;
         try {
-          result[config] = await this.fetchConfiguration(config);
+          contents = await this.fetchConfiguration(config);
         } catch (e) {
           // TODO log
-          result[config] = undefined;
+          console.error("Error reading config file", e);
         }
+        result[config] = { contents };
       }
     }
     return result;
@@ -52,12 +54,11 @@ export class FileBasedConfigService {
       defaultResult = [];
     }
     try {
-      const filePath = join(this.folder, `${configName}.json`);
+      const filePath = join(this.folder, configName);
       if (!existsSync(filePath)) {
         return defaultResult;
       }
-      const contents = await readFilePromisified(join(filePath), "utf8");
-      return json5.parse(contents);
+      return readFilePromisified(join(filePath), "utf8");
     } catch {
       return defaultResult;
     }
@@ -69,7 +70,6 @@ export class FileBasedConfigService {
       names = await readDirPromisfied(this.folder);
       names = names
         .filter(n => n.endsWith(".json") && !n.includes("-"))
-        .map(f => f.replace(".json", ""));
     } catch (e) {
       // TODO log
     }
