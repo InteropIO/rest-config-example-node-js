@@ -13,8 +13,17 @@ This example uses application definitions in JSON format located in the `configu
 To start:
 
 ```cmd
-npm i           // install the dependencies
-npm run start   // run the server
+# install the dependencies
+$ npm i           
+
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
 ```
 
 This will start the service on port 8004.

@@ -1,35 +1,21 @@
 {
-    "compilerOptions": {
-        "noImplicitAny": true,
-        "sourceMap": true,
-        "module": "CommonJS",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "esModuleInterop": true,
-        "declaration": false,
-        "target": "ES5",
-        "pretty": true,
-        "strict": true,
-        "noImplicitThis": true,
-        "strictNullChecks": true,
-        "strictPropertyInitialization": true,
-        "strictBindCallApply": true,
-        "strictFunctionTypes": true,
-        "removeComments": true,
-        "lib": [
-            "dom",
-            "es5",
-            "es6",
-            "scripthost",
-            "es2015.promise",
-            "es2015.symbol"
-        ]
-    },
-    "include": [
-        "./src/index.ts",        
-    ],
-    "exclude": [
-        "node_modules",
-        "dist"
-    ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false
+  }
 }

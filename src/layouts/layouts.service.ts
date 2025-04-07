@@ -5,7 +5,6 @@ import { join } from "path";
 import * as json5 from "json5";
 import { SaveLayoutRequestDto } from './dto/save-layout-request.dto';
 import { LayoutDto } from './dto/layout.dto';
-import { GetLayoutsResponseDto } from './dto/get-layouts-response.dto';
 
 const readDirPromisfied = promisify(readdir);
 const readFilePromisified = promisify(readFile);
