@@ -10,7 +10,7 @@ const mkDirPromisified = promisify(mkdir);
 
 @Injectable()
 export class FileBasedConfigService {
-  private folder = process.env.PREFS_FOLDER || "./configuration/configs";
+  private folder = process.env.CONFIGS_FOLDER || "./configuration/configs";
   // some of the confis are actually arrays (not objects)
   private arrayConfigs = ["themes.json", "channels.json"];
 

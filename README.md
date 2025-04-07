@@ -1,5 +1,7 @@
 # io.Connect Configuration Service Example
 
+⚠️ **Warning:** This is a sample implementation intended for demonstration purposes only. Several aspects would require enhancement for production use in a multi-user environment. Most notably, this sample lacks proper user management and authentication. In a production system, requests should be segregated by user identity, ensuring users can only access their own layouts and data. Currently, this example returns all layouts to any connecting user regardless of identity, which would be inappropriate for a secure multi-user application.
+
 [**io.Connect Desktop**](https://docs.interop.io/desktop/getting-started/what-is-io-connect-desktop/general-overview/index.html) uses application, layout, system and other configurations defined on the local machine, but can also be reconfigured to fetch them from a REST service.
 
 This example project shows how to run a Node.js REST service that provides configuration stores for **io.Connect Desktop**.
@@ -22,9 +24,16 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
-```
+This will start the service on port 8004 (by default). You can override the port by setting the `SERVER_PORT` environment variable, as described later in the document.
 
 This will start the service on port 8004.
+
+## REST API Documentation
+
+Once the server is running, you can:
+* view the Swagger UI by opening http://localhost:8004/api 
+* view the Swagger definition by opening http://localhost:8004/api-json or http://localhost:8004/api-yaml. 
+
 
 ## io.Connect Desktop Configuration
 
@@ -67,7 +76,7 @@ To enable fetching layouts from the REST store, find the `"layouts"` top-level k
 
 ### Application Preferences
 
-To enable reading and storing application preference from he REST store, find the `"applicationPreferences"` top-level key in the `system.json` file and edit the `"store"` property - change the `"type"` to `"rest"` and assign the URL of the service to the `"restURL"`:
+To enable reading and storing application preference from the REST store, find the `"applicationPreferences"` top-level key in the `system.json` file and edit the `"store"` property - change the `"type"` to `"rest"` and assign the URL of the service to the `"restURL"`:
 
 ```json
 {
@@ -93,24 +102,11 @@ To enable io.Connect Desktop to fetch configurations from a remote location, use
 } 
 ```
 
-## REST Service Configuration
+## REST Service Env Variables
 
-### Port
+SERVER_PORT - The port on which the REST service will run. Defaults to 8004
+APPS_FOLDER - Specifies the directory containing application definitions in JSON format. By default, it points to the `configuration\apps` folder, but the environment variable `APPS_FOLDER` can be used to override this setting.
+LAYOUTS_FOLDER - Specifies the directory for reading and storing layout definitions. By default, this is set to the `configuration\layouts` folder, but the environment variable `LAYOUTS_FOLDER` can be used to override this setting.
+PREFS_FOLDER - Specifies the directory used for reading and storing application preferences. By default, it points to the `configuration\prefs` folder, but the environment variable `PREFS_FOLDER` can be used to override this setting.
+CONFIGS_FOLDER - Specifies the directory for storing system configurations. By default, it points to the `configuration\configs` folder, but the environment variable `CONFIGS_FOLDER` can be used to override this setting.
 
-By default, the server will listen on port 8004. The environment variable `SERVER_PORT` can be used to override this setting, e.g. to change the port to 8005 in the start script:
-
-```json
-{
-    "scripts": {
-        "start": "env SERVER_PORT=8005 && npm run build && node ./src/index.js"
-    }
-}
-```
-
-### Application Files
-
-This example uses application definitions in JSON format located in the `configuration\apps` folder. The environment variable `APPS_FOLDER` can be used to override the default setting.
-
-### Layout Files
-
-This example reads and stores layouts from the `configuration\layouts` folder. The environment variable `LAYOUTS_FOLDER` can be used to override the default setting.
