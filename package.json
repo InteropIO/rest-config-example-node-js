@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -p ./tsconfig.json",
     "start": "npm run build && node ./src/index.js",
-    "start-fdc3": "set USE_FDC3=true && npm run build && node ./src/index.js",
-    "startDebug": "set DEBUG=express:* && npm run build && node ./src/index.js"
+    "start-fdc3": "cross-env USE_FDC3=true npm run build && cross-env USE_FDC3=true node ./src/index.js",
+    "startDebug": "cross-env DEBUG=express:* npm run build && cross-env DEBUG=express:* node ./src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",
+    "cross-env": "^7.0.3",
     "typescript": "^5.2.2"
   }
 }
