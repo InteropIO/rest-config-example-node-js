@@ -19,10 +19,10 @@ const unlinkFilePromisified = promisify(unlink);
  */
 @Injectable()
 export class FileBasedLayoutsService {
+  
 
   private layoutsFolder = process.env.APPS_FOLDER || "./configuration/layouts";
   private defaultLayoutType = "default";
-
 
   async getAll(): Promise<LayoutDto[]> {
     // get the json files
@@ -47,10 +47,21 @@ export class FileBasedLayoutsService {
   }
 
   async remove(name: string, type: string): Promise<void> {
+    console.log(`Removing layout ${name} (${type})`);
     await unlinkFilePromisified(this.getLayoutPath({ name, type }));
   }
 
-  async saveDefaultLayout(layout: SaveLayoutRequestDto): Promise<void> {
+  async removeMany(ids: string[]): Promise<void> {
+    // id is in format `name (type)`
+    const promises = ids.map(id => {
+      let [name, type] = id.split(" (");
+      type = type.slice(0, -1); // remove the closing parenthesis
+      return this.remove(name, type);
+    });
+    await Promise.all(promises);
+  }
+
+  async saveDefaultLayout(layout: LayoutDto): Promise<void> {
     const defaultFilePath = this.getLayoutPath({ name: "layout", type: this.defaultLayoutType });
     const content = JSON.stringify(layout, undefined, 2);
     await writeFilePromisified(defaultFilePath, content, "utf8");
@@ -62,6 +73,13 @@ export class FileBasedLayoutsService {
       const content = await readFilePromisified(defaultFilePath, { encoding: "utf-8" });
       return JSON.parse(content);
     }
+  }
+
+  async renameLayout(layout: LayoutDto, newName: string): Promise<void> {
+    const oldPath = this.getLayoutPath(layout);
+    const newPath = join(this.layoutsFolder, `${layout.type}-${newName}.json`);
+    await writeFilePromisified(newPath, await readFilePromisified(oldPath), "utf8");
+    await unlinkFilePromisified(oldPath);
   }
 
   getLayoutPath(layout: LayoutDto): string {
