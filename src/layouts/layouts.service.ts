@@ -19,7 +19,7 @@ const unlinkFilePromisified = promisify(unlink);
  */
 @Injectable()
 export class FileBasedLayoutsService {
-  
+
 
   private layoutsFolder = process.env.APPS_FOLDER || "./configuration/layouts";
   private defaultLayoutType = "default";
@@ -76,10 +76,15 @@ export class FileBasedLayoutsService {
   }
 
   async renameLayout(layout: LayoutDto, newName: string): Promise<void> {
-    const oldPath = this.getLayoutPath(layout);
-    const newPath = join(this.layoutsFolder, `${layout.type}-${newName}.json`);
-    await writeFilePromisified(newPath, await readFilePromisified(oldPath), "utf8");
-    await unlinkFilePromisified(oldPath);
+    try {
+      const oldPath = this.getLayoutPath(layout);
+      await unlinkFilePromisified(oldPath);
+    } catch (error) {
+      console.error("Error deleting old layout file:", error);
+    }
+
+    layout.name = newName;
+    this.saveLayout(layout);
   }
 
   getLayoutPath(layout: LayoutDto): string {
