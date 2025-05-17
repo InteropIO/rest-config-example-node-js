@@ -1,0 +1,37 @@
+name: Create Release Zip
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers only on version tags like v1.0.0
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  # or your desired version
+
+      - name: Install dependencies
+        run: npm install
+      
+      - build: Build the project
+        run: npm run build
+
+      - name: Create zip file
+        run: |
+          mkdir -p release
+          zip -r release/rest-config-example.zip node_modules dist package.json package-lock.json README.md
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/rest-config-example.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
