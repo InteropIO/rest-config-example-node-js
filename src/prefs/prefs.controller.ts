@@ -57,7 +57,7 @@ export class PrefsController {
   })
   removeApp(@Body() removeRequest: RemoveAppPrefsRequestDto): Promise<void> {
     console.log("Removing prefs", removeRequest);
-    if (!removeRequest.app) {
+    if (removeRequest.app) {
       return this.service.remove(removeRequest.app);
     } else {
       return this.service.clear();

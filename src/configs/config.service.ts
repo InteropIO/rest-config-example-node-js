@@ -58,7 +58,7 @@ export class FileBasedConfigService {
       if (!existsSync(filePath)) {
         return defaultResult;
       }
-      return readFilePromisified(join(filePath), "utf8");
+      return readFilePromisified(filePath, "utf8");
     } catch {
       return defaultResult;
     }
