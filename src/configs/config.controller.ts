@@ -2,7 +2,7 @@ import { Controller, Headers, Get, Query, Post, Body } from '@nestjs/common';
 import { FileBasedConfigService } from './config.service';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GetConfigsRequestDto } from './dto/get-configs-request.dto';
-import { GetConfigsResponsetDto } from './dto/get-configs-response.dto';
+import { GetConfigsResponseDto } from './dto/get-configs-response.dto';
 
 @ApiTags('Configurations')
 @Controller("configs")
@@ -15,7 +15,7 @@ export class ConfigController {
   })
   @ApiOkResponse({
     description: 'Successfully retrieved configurations.',
-    type: GetConfigsResponsetDto
+    type: GetConfigsResponseDto
   })
   async get(@Body() config : GetConfigsRequestDto): Promise<Record<string, string>> {
      let configsParam: string = config.configs ?? "*";

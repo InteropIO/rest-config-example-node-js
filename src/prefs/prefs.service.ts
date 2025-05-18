@@ -71,9 +71,9 @@ export class FileBasedPrefsService {
   public async clear(): Promise<void> {
     let files = await readDirPromisfied(this.folder);
     files = files.filter(f => f.endsWith(".json"));
-    files.map((f) => {
-      unlinkFilePromisified(join(this.folder, f));
-    });
+    await Promise.all(
+      files.map(f => unlinkFilePromisified(join(this.folder, f)))
+    );
   }
 
   private fullPath(app: string) {

@@ -21,7 +21,7 @@ const unlinkFilePromisified = promisify(unlink);
 export class FileBasedLayoutsService {
 
 
-  private layoutsFolder = process.env.APPS_FOLDER || "./configuration/layouts";
+  private layoutsFolder = process.env.LAYOUTS_FOLDER || "./configuration/layouts";
   private defaultLayoutType = "default";
 
   async getAll(): Promise<LayoutDto[]> {
@@ -84,7 +84,7 @@ export class FileBasedLayoutsService {
     }
 
     layout.name = newName;
-    this.saveLayout(layout);
+    await this.saveLayout(layout);
   }
 
   getLayoutPath(layout: LayoutDto): string {
