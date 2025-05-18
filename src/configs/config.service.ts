@@ -58,7 +58,8 @@ export class FileBasedConfigService {
       if (!existsSync(filePath)) {
         return defaultResult;
       }
-      return readFilePromisified(join(filePath), "utf8");
+      const content = await readFilePromisified(filePath, "utf8");
+      return json5.parse(content);
     } catch {
       return defaultResult;
     }
