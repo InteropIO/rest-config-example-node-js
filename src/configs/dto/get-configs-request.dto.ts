@@ -2,7 +2,8 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class GetConfigsRequestDto {
     @ApiProperty({
-        description: 'Comma seperated list of JSON configurations files to retrieve. If',
+        description: 'Comma separated list of JSON configuration files to retrieve. Use "*" to retrieve all configurations.',
     })
-    configs: string;   
+    configs: string;
 }
+

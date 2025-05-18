@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class GetConfigsResponsetDto {
+export class GetConfigsResponseDto {
     @ApiProperty({
         description: 'Overriding JSON configuration for the `system.json` file of io.Connect Desktop.',
     })
@@ -16,3 +16,4 @@ export class GetConfigsResponsetDto {
     })
     "logger.json": string;
 }
+
