@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { promisify } from "util";
 import { readdir, readFile, writeFile, unlink, existsSync } from "fs";
 import { join } from "path";
+import { createHash } from "crypto";
 import * as json5 from "json5";
 import { SaveLayoutRequestDto } from './dto/save-layout-request.dto';
 import { LayoutDto } from './dto/layout.dto';
@@ -92,6 +93,8 @@ export class FileBasedLayoutsService {
   }
 
   getLayoutName(layout: LayoutDto): string {
-    return `${layout.type}-${layout.name}.json`;
+    // Hash is appended to avoid conflicts due to NTFS case-insensitive file naming on Windows.
+    const hash = createHash("sha256").update(layout.name).digest("hex").slice(0, 8);
+    return `${layout.type}-${layout.name}_${hash}.json`;
   }
 }
